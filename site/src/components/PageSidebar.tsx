@@ -59,7 +59,7 @@ const SidebarPageSection: VFC<SidebarPageSectionProps> = ({
 
   const { title: sectionTitle, anchor: sectionAnchor, subSections } = section;
 
-  const sectionHref = `${pageHref}#${sectionAnchor}`;
+  const sectionHref = sectionAnchor ? `${pageHref}#${sectionAnchor}` : pageHref;
 
   const isSectionSelected =
     asPath === sectionHref ||
@@ -75,6 +75,7 @@ const SidebarPageSection: VFC<SidebarPageSectionProps> = ({
     <>
       <Box mb={1} display="flex" alignItems="center">
         <SidebarLink
+          replace
           ref={(ref) => {
             if (ref && isSectionSelected) {
               setSelectedAnchorElement(ref);
